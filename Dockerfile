@@ -23,6 +23,7 @@ RUN apt-get update \
  && ln -s /build/ltsmin-v3.0.2/bin/dve2lts-mc /bin/dve2lts-mc                                  \
  && git clone https://gitlab.lrde.epita.fr/spot/go2pins.git                                    \
  && cd go2pins                                                                                 \
+ && git checkout er/pre-release                                                                \
  && make                                                                                       \
  && make check
  
