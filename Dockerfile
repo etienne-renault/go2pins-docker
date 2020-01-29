@@ -14,7 +14,7 @@ RUN apt-get update \
  && ./configure  --disable-python && make && cd tests                                          \
  && make ltsmin/modelcheck                                                                     \
  && ln -s /build/spot-2.8.5/tests/ltsmin/modelcheck /bin/modelcheck                            \
- && cd ..                                                                                      \
+ && cd /build                                                                                  \
  && rm -f spot-2.8.5.tar.gz                                                                    \
  && wget http://github.com/utwente-fmt/ltsmin/releases/download/v3.0.2/ltsmin-v3.0.2-linux.tgz \
  && tar -xzvf ltsmin-v3.0.2-linux.tgz                                                          \
