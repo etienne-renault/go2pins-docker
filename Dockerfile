@@ -8,7 +8,7 @@ WORKDIR /build
 
 RUN apt-get update \
  && apt-get install -y --force-yes --no-install-recommends                                     \
-    ca-certificates golang git make-guile clang gcc g++ wget                                   \
+    ca-certificates golang git make-guile clang gcc g++ wget python zsh bc                     \
  && wget http://www.lrde.epita.fr/dload/spot/spot-2.8.5.tar.gz                                 \
  && tar -xzvf spot-2.8.5.tar.gz && cd spot-2.8.5                                               \
  && ./configure  --disable-python && make && cd tests                                          \
@@ -23,7 +23,6 @@ RUN apt-get update \
  && ln -s /build/ltsmin-v3.0.2/bin/dve2lts-mc /bin/dve2lts-mc                                  \
  && git clone https://gitlab.lrde.epita.fr/spot/go2pins.git                                    \
  && cd go2pins                                                                                 \
- && git checkout er/pre-release                                                                \
  && make                                                                                       \
  && make check
  
