@@ -8,7 +8,7 @@ WORKDIR /build
 
 RUN apt-get update \
  && apt-get install -y --force-yes --no-install-recommends                                     \
-    ca-certificates golang git make-guile clang gcc g++ wget python zsh bc                     \
+    ca-certificates golang git make-guile clang gcc g++ wget python zsh bc time                \
  && wget http://www.lrde.epita.fr/dload/spot/spot-2.8.5.tar.gz                                 \
  && tar -xzvf spot-2.8.5.tar.gz && cd spot-2.8.5                                               \
  && ./configure  --disable-python && make && cd tests                                          \
