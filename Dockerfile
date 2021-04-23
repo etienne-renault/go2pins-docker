@@ -20,9 +20,9 @@ RUN apt-get update \
     texlive-fonts-recommended-doc- libltdl-dev  pdf2svg emacs                                  \
  && git clone https://gitlab.lrde.epita.fr/spot/spot.git                                       \
  && cd spot                                                                                    \
- && ./configure  --disable-python --disable-devel && make && cd tests
+ && ./configure  --disable-python --disable-devel && make && cd tests                          \
  && make ltsmin/modelcheck                                                                     \
- && ln -s /build/spot/tests/ltsmin/modelcheck /bin/modelcheck                            \
+ && ln -s /build/spot/tests/ltsmin/modelcheck /bin/modelcheck                                  \
  && cd /build                                                                                  \
  && rm -f spot-2.9.6.tar.gz                                                                    \
  && wget http://github.com/utwente-fmt/ltsmin/releases/download/v3.0.2/ltsmin-v3.0.2-linux.tgz \
