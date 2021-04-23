@@ -7,7 +7,7 @@ MAINTAINER Etienne RENAULT <renault@lrde.epita.fr>
 WORKDIR /build
 
 RUN apt-get update \
- && apt-get install -y --force-yes --no-install-recommends                                     \
+ && apt-get install -y                                                                        \
     ca-certificates golang git make-guile clang gcc g++ wget python                            \
     bison flex texlive latexmk                                                                 \
     r-base-core r-recommended- r-base-dev- r-base-html-                                        \
@@ -19,7 +19,7 @@ RUN apt-get update \
     texlive-pictures-doc- texlive-pstricks-doc-                                                \
     texlive-fonts-recommended-doc- libltdl-dev  pdf2svg emacs                                  \
  && git clone https://gitlab.lrde.epita.fr/spot/spot.git                                       \
- && cd spot                                                                                    \
+ && cd spot && autoreconf -vfi                                                                 \
  && ./configure  --disable-python --disable-devel && make && cd tests                          \
  && make ltsmin/modelcheck                                                                     \
  && ln -s /build/spot/tests/ltsmin/modelcheck /bin/modelcheck                                  \
