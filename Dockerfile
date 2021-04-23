@@ -8,14 +8,23 @@ WORKDIR /build
 
 RUN apt-get update \
  && apt-get install -y --force-yes --no-install-recommends                                     \
-    ca-certificates golang git make-guile clang gcc g++ wget python zsh bc time                \
- && wget http://www.lrde.epita.fr/dload/spot/spot-2.8.5.tar.gz                                 \
- && tar -xzvf spot-2.8.5.tar.gz && cd spot-2.8.5                                               \
- && ./configure  --disable-python && make && cd tests                                          \
+    ca-certificates golang git make-guile clang gcc g++ wget python                            \
+    bison flex texlive latexmk                                                                 \
+    r-base-core r-recommended- r-base-dev- r-base-html-                                        \
+    r-cran-data.table r-cran-ggplot2                                                           \
+    latexmk texlive-latex-extra texlive-fonts-extra                                            \
+    texlive-science                                                                            \
+    texlive-latex-extra-doc- texlive-fonts-extra-doc-                                          \
+    texlive-latex-base-doc- texlive-latex-recommended-doc-                                     \
+    texlive-pictures-doc- texlive-pstricks-doc-                                                \
+    texlive-fonts-recommended-doc- libltdl-dev  pdf2svg emacs                                  \
+ && git clone https://gitlab.lrde.epita.fr/spot/spot.git                                       \
+ && cd spot                                                                                    \
+ && ./configure  --disable-python --disable-devel && make && cd tests
  && make ltsmin/modelcheck                                                                     \
- && ln -s /build/spot-2.8.5/tests/ltsmin/modelcheck /bin/modelcheck                            \
+ && ln -s /build/spot/tests/ltsmin/modelcheck /bin/modelcheck                            \
  && cd /build                                                                                  \
- && rm -f spot-2.8.5.tar.gz                                                                    \
+ && rm -f spot-2.9.6.tar.gz                                                                    \
  && wget http://github.com/utwente-fmt/ltsmin/releases/download/v3.0.2/ltsmin-v3.0.2-linux.tgz \
  && tar -xzvf ltsmin-v3.0.2-linux.tgz                                                          \
  && rm ltsmin-v3.0.2-linux.tgz                                                                 \
@@ -25,4 +34,3 @@ RUN apt-get update \
  && cd go2pins                                                                                 \
  && make                                                                                       \
  && make check
- 
